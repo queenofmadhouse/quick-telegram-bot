@@ -1,18 +1,18 @@
 const express = require('express');
-const Context = require("../context/context");
 
+/**
+ * Represents a Webhook server designed to handle incoming updates for a Telegram bot.
+ */
 class WebhookServer {
     /**
      * @param {function} updateHandler
-     * @param {object} options
-     * @param {number} options.port
-     * @param {string} options.path
-     * @param bot
+     * @param {number} port
+     * @param {TelegramBot} bot
      */
-    constructor(updateHandler, { port = 3000, path = '/webhook' } = {}, bot) {
+    constructor(updateHandler, port, bot) {
         this.bot = bot;
         this.port = port;
-        this.path = path;
+        this.path = '/webhook';
         this.updateHandler = updateHandler;
         this.app = express();
         this.server = null;
@@ -21,16 +21,11 @@ class WebhookServer {
 
         this.app.post(this.path, async (req, res) => {
             const update = req.body;
-            console.log(update);
-            const ctx = new Context(update, this.bot);
-            console.log(ctx);
-
             try {
-                await this.updateHandler(ctx);
+                await this.updateHandler(update, this.bot);
             } catch (err) {
-                console.error('Error in handler:', err);
+                console.error('Error in update handler:', err);
             }
-
             res.sendStatus(200);
         });
     }

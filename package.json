@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "@types/jest": "^29.2.5",
+    "dotenv": "^16.5.0",
     "jest": "^29.3.1"
   },
   "scripts": {
@@ -9,5 +10,22 @@
   "dependencies": {
     "axios": "^1.8.4",
     "express": "^5.1.0"
-  }
+  },
+  "name": "quick-telegram-bot",
+  "version": "1.0.2",
+  "description": "",
+  "main": "src/index.js",
+  "files": [
+    "src/",
+    "package.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/queenofmadhouse/quick-telegram-bot"
+  },
+  "directories": {
+    "example": "example"
+  },
+  "author": "Eva Kalachik",
+  "license": "MIT"
 }

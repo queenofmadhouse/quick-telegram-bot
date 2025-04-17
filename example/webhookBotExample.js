@@ -1,13 +1,7 @@
-# Quick Telegram Bot
+const { createWebhookBot } = require('../src');
 
-**Based on [telegram bot api](https://core.telegram.org/bots/api)**
-
-### Usage example
-~~~js
-const {createWebhookBot} = require("quick-telegram-bot");
-
-const token = 'YOUR_BOT_TOKEN';
-const webhookUrl = 'YOUR_WEBHOOK_URL';
+const token = process.env.BOT_TOKEN;
+const webhookUrl = process.env.WEBHOOK_URL;
 
 const handleUpdate = async (update, bot) => {
 
@@ -27,4 +21,3 @@ const handleUpdate = async (update, bot) => {
         updateHandler: handleUpdate,
     });
 })();
-~~~
