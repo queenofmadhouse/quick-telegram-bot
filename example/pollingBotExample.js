@@ -1,13 +1,6 @@
-# Quick Telegram Bot
+const {createPollingBot} = require('../src');
 
-**Based on [telegram bot api](https://core.telegram.org/bots/api)**
-
-### Usage example
-~~~js
-const {createWebhookBot} = require("quick-telegram-bot");
-
-const token = 'YOUR_BOT_TOKEN';
-const webhookUrl = 'YOUR_WEBHOOK_URL';
+const token = process.env.BOT_TOKEN;
 
 const handleUpdate = async (update, bot) => {
 
@@ -20,11 +13,11 @@ const handleUpdate = async (update, bot) => {
 };
 
 (async () => {
-    await createWebhookBot({
+    console.log(token)
+    await createPollingBot({
         token: token,
-        webhookUrl: webhookUrl,
-        port: 3000,
         updateHandler: handleUpdate,
+        pollingTimeout: 30,   // seconds
+        pollInterval: 1000    // milliseconds
     });
 })();
-~~~
