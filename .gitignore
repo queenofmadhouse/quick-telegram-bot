@@ -1,0 +1,4 @@
+# Default ignored files
+node_modules
+.idea
+.env
